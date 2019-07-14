@@ -91,4 +91,10 @@ public class UpperCaseCounterTest {
     public void shouldThrowExceptionWhenGetMinusOneIndex() {
         new ArrayList<Object>().get(-1);
     }
+
+    @Test(timeout = 3000)
+    public void testShouldRunIn3000ms() throws InterruptedException {
+        Thread.sleep(2000);
+        System.out.println("3000ms 안에 통과하면 테스트 성공");
+    }
 }
