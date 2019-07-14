@@ -86,4 +86,9 @@ public class UpperCaseCounterTest {
         assertThat(result, is(13));
         System.out.println("result :: " + result);
     }
+
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void shouldThrowExceptionWhenGetMinusOneIndex() {
+        new ArrayList<Object>().get(-1);
+    }
 }
