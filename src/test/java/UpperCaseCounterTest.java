@@ -62,4 +62,20 @@ public class UpperCaseCounterTest {
         Thread.sleep(4000);
         System.out.println("제한된 시간 내에 수행되면 테스트 Passed!");
     }
+
+    /* 이용재
+     * getNumberOfUpperCaseCharactersInString_return_10_for_ABCDEFGHIJ,
+     * getNumberOfUpperCaseCharacterInString_return_6_for_ABCdefGHI,
+     * shouldThrowExceptionWhenGetZeroIndex,
+     * testShouldRunInLimitedTime
+     * 위에 4개 함수 응용
+     */
+
+    @Test
+    public void getNumberOfUpperCaseCharactersInString_return_26_for_ABCDEFGHIJKLMNOPQRSTUVWXYZ() {
+        String str = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        int result = upperCaseCounter.getNumberOfUpperCaseCharactersInString(str);
+        assertThat(result, is(26));
+        System.out.println("result :: " + result);
+    }
 }
