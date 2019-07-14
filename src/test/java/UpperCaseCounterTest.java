@@ -78,4 +78,12 @@ public class UpperCaseCounterTest {
         assertThat(result, is(26));
         System.out.println("result :: " + result);
     }
+
+    @Test
+    public void getNumberOfUpperCaseCharacterInString_return_13_for_ABCDEFGHIJKLMNOPQRSTUVWXYZ() {
+        String str = "ABCDEFGHIJKLMnopqrstuvwxyz";
+        int result = upperCaseCounter.getNumberOfUpperCaseCharactersInString(str);
+        assertThat(result, is(13));
+        System.out.println("result :: " + result);
+    }
 }
