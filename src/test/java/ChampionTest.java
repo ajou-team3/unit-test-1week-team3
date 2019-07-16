@@ -1,9 +1,14 @@
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.internal.matchers.Null;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assert.assertNotNull;
 
 public class ChampionTest {
     private List<Champion> championList = new ArrayList<Champion>();
@@ -27,21 +32,23 @@ public class ChampionTest {
     }
 
     //List<String>을 생성하고 값이 비어 있는지를 테스트 empty()
-    @Test
+    @Test //lww
     public void givenCollectionWhenEmptyCorrect() {
         List<String> emptyList = new ArrayList<>();
+        assertThat(emptyList.size(),is(0));
 //        assertThat(emptyList, empty());
     }
 
     //notNullValue 활용한 테스트
-    @Test
+    @Test  //lww
     public void notNullCheck() {
         String lck = "LCK";
+        assertNotNull(lck);
 //        assertThat(lck, notNullValue());
     }
 
     //nullValue 활용한 테스트
-    @Test
+    @Test //lww
     public void givenStringWhenNullIsCorrect() {
         String lck = null;
 //        assertThat(lck, nullValue());
@@ -49,7 +56,7 @@ public class ChampionTest {
 
 
     //문자열 관련 테스트 anyOf, containsString, endWith
-    @Test
+    @Test //lww
     public void testForRelatedString() {
         String sampleString1 = "Player Focus";
         String sampleString2 = "Player point";
@@ -60,7 +67,7 @@ public class ChampionTest {
     }
 
     //부동소수점 범위 closeTo 테스트
-    @Test
+    @Test //lww
     public void testForFloatingPoint() {
 //        assertThat(3.14, closeTo(3, 0.2));
     }
