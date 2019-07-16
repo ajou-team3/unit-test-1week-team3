@@ -8,6 +8,7 @@ import java.util.List;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.number.IsCloseTo.closeTo;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
@@ -75,6 +76,7 @@ public class ChampionTest {
     @Test //lww
     public void testForFloatingPoint() {
 //        assertThat(3.14, closeTo(3, 0.2));
+        assertThat(3.11,closeTo(3,0.12));
     }
 
     //anything 테스트
