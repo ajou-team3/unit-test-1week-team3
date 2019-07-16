@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -64,6 +64,9 @@ public class ChampionTest {
         String sampleString2 = "Player point";
         String startString = "Player";
         String endString = "point";
+        String contain="yer";
+        assertThat(sampleString1,is(startsWith(startString)));
+        assertThat(sampleString2,allOf(containsString(contain),endsWith(endString)));
 //        assertThat(sampleString1, anyOf(startsWith(startString), containsString(endString)));
 //        assertThat(sampleString2, is(endsWith(endString)));
     }
