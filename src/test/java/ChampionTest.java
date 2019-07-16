@@ -8,6 +8,7 @@ import java.util.List;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 public class ChampionTest {
@@ -51,6 +52,7 @@ public class ChampionTest {
     @Test //lww
     public void givenStringWhenNullIsCorrect() {
         String lck = null;
+        assertEquals(lck,null);
 //        assertThat(lck, nullValue());
     }
 
