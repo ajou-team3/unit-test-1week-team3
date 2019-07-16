@@ -5,12 +5,13 @@ import org.mockito.internal.matchers.Null;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.samePropertyValuesAs;
 import static org.hamcrest.number.IsCloseTo.closeTo;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
 
 public class ChampionTest {
     private List<Champion> championList = new ArrayList<Champion>();
@@ -117,22 +118,30 @@ public class ChampionTest {
     }
 
     //property와 value가 같은지 테스트
+    //박수린
     @Test
     public void shouldHaveSamePropertyAndValue() {
-        List<String> championNames1 = Arrays.asList("루시안", "애쉬", "렉사이", "갈리오", "모르가나", "블라디미르");
-        List<String> championNames2 = Arrays.asList("루시안", "애쉬", "렉사이", "갈리오", "모르가나", "블라디미르");
-//        assertThat(championNames1, samePropertyValuesAs(championNames2));
+        Champion champion = new Champion("애쉬", "원딜");
+        Champion champion1 = new Champion("루시안", "원딜");
+        Champion champion2 = new Champion("애쉬", "원딜");
+
+        assertThat(champion, samePropertyValuesAs(champion2));
+        // assertThat(champion1, samePropertyValuesAs(champion2));
     }
 
     //탑 챔피언은 다리우스여야 한다라는 조건으로 테스트 코드 작성, stream 활용예
+    //박수린
     @Test
     public void shouldTopChampionIsDarius() {
-//        Optional<Champion> filterdChampion = championList.stream()
-//                .filter(c -> c.getPosition().equals("탑"))
-//                .findFirst();
-//        String champName = filterdChampion.get().getName();
-//        assertTrue(champName.equals("다리우스"));
-//        assertThat("다리우스", is(champName));
+        Optional<Champion> filteredChampion = championList.stream()
+                .filter(c -> c.getPosition().equals("정글"))
+                .findFirst();
+
+        System.out.println("result :: " + filteredChampion);
+
+        String champName = filteredChampion.get().getName();
+        // assertThat(champName, is("리신"));
+        assertTrue(champName.equals("리신"));
     }
 
 }
