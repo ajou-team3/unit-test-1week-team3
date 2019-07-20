@@ -1,6 +1,5 @@
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.internal.matchers.Null;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -10,7 +9,10 @@ import java.util.Optional;
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.samePropertyValuesAs;
+import static org.hamcrest.beans.HasPropertyWithValue.hasProperty;
+import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
 import static org.hamcrest.number.IsCloseTo.closeTo;
+import static org.hamcrest.object.HasToString.hasToString;
 import static org.junit.Assert.*;
 
 public class ChampionTest {
@@ -38,7 +40,7 @@ public class ChampionTest {
     @Test //lww
     public void givenCollectionWhenEmptyCorrect() {
         List<String> emptyList = new ArrayList<>();
-        assertThat(emptyList.size(),is(0));
+        assertThat(emptyList.size(), is(0));
 //        assertThat(emptyList, empty());
     }
 
@@ -54,7 +56,7 @@ public class ChampionTest {
     @Test //lww
     public void givenStringWhenNullIsCorrect() {
         String lck = null;
-        assertEquals(lck,null);
+        assertEquals(lck, null);
 //        assertThat(lck, nullValue());
     }
 
@@ -66,9 +68,9 @@ public class ChampionTest {
         String sampleString2 = "Player point";
         String startString = "Player";
         String endString = "point";
-        String contain="yer";
-        assertThat(sampleString1,is(startsWith(startString)));
-        assertThat(sampleString2,allOf(containsString(contain),endsWith(endString)));
+        String contain = "yer";
+        assertThat(sampleString1, is(startsWith(startString)));
+        assertThat(sampleString2, allOf(containsString(contain), endsWith(endString)));
 //        assertThat(sampleString1, anyOf(startsWith(startString), containsString(endString)));
 //        assertThat(sampleString2, is(endsWith(endString)));
     }
@@ -77,13 +79,16 @@ public class ChampionTest {
     @Test //lww
     public void testForFloatingPoint() {
 //        assertThat(3.14, closeTo(3, 0.2));
-        assertThat(3.11,closeTo(3,0.12));
+        assertThat(3.11, closeTo(3, 0.12));
     }
 
+    // 이영주
     //anything 테스트
     @Test
     public void shouldNotErrorGetReference() {
 //        assertThat(championList.get(2), anything());
+        assertThat(championList.get(0), anything());
+        assertThat(championList.get(1), any(Champion.class));
     }
 
     //객체 크기 검증 테스트 hasSize
@@ -92,6 +97,9 @@ public class ChampionTest {
 //        assertTrue(championList.size() == 5);
 //        assertThat(championList.size(), is(5));
 //        assertThat(championList, hasSize(5));
+
+        assertThat(championList, hasSize(5));
+        assertEquals(5, championList.size());
     }
 
     //서폿 챔피언은 타릭이어야 한다라는 조건으로 테스트 코드 작성
@@ -101,6 +109,8 @@ public class ChampionTest {
 //        assertThat("타릭", is(supportChamp.getName()));
 //        assertThat("타릭", is(equalTo(supportChamp.getName())));
 //        assertThat("타릭", equalTo(supportChamp.getName()));
+        assertEquals("타릭", supportChamp.getName());
+        assertTrue(supportChamp.getName().equals("타릭"));
     }
 
     //hasProperty 활용하여 속성이 포함되어 있는지 테스트
@@ -108,6 +118,9 @@ public class ChampionTest {
     public void shouldHasPropertyPosition() {
 //        assertThat(championList.get(0), hasProperty("position"));
 //        assertThat(championList.get(0), hasProperty("position", equalTo("탑")));
+
+        assertThat(championList.get(1), hasProperty("name", equalTo("리신")));
+        assertThat(championList.get(1), hasProperty("position", is("정글")));
     }
 
     //hasToString 활용 테스트
@@ -115,7 +128,11 @@ public class ChampionTest {
     public void shouldHaveSomeChampName() {
         List<String> champListNames = Arrays.asList("루시안", "애쉬", "렉사이", "갈리오", "모르가느", "블라디미르");
 //        assertThat(champListNames.get(0), hasToString("루시안"));
+
+        assertThat(champListNames.get(1), hasToString(any(String.class)));
+        assertThat(champListNames.get(1), hasToString("애쉬"));
     }
+
 
     //property와 value가 같은지 테스트
     //박수린
