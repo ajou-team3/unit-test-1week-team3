@@ -1,25 +1,33 @@
+import org.hamcrest.collection.IsArrayContaining;
+import org.hamcrest.core.IsCollectionContaining;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
+import java.util.stream.Collectors;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.samePropertyValuesAs;
+import static org.hamcrest.Matchers.*;
 import static org.hamcrest.beans.HasPropertyWithValue.hasProperty;
 import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
 import static org.hamcrest.number.IsCloseTo.closeTo;
 import static org.hamcrest.object.HasToString.hasToString;
 import static org.junit.Assert.*;
+import static org.mockito.Matchers.anyString;
 
 public class ChampionTest {
     private List<Champion> championList = new ArrayList<Champion>();
+    private Map<String, Integer> positionCount = new HashMap<>();
 
     @Before
     public void setUp() {
+
+        positionCount.put("바텀", 0);
+        positionCount.put("탑", 0);
+        positionCount.put("정글", 0);
+        positionCount.put("미드", 0);
 
         //5개의 챔피언 객체를 만듭니다.
         Champion topChamp = new Champion("다리우스", "탑");
@@ -34,13 +42,34 @@ public class ChampionTest {
         championList.add(midChamp);
         championList.add(adcChamp);
         championList.add(supportChamp);
+
+        for (Champion champion : championList) {
+            positionCount.put(champion.getPosition(), positionCount.get(champion.getPosition()) + 1);
+        }
     }
 
-    //List<String>을 생성하고 값이 비어 있는지를 테스트 empty()
+    //플레이 위치가 중복되는 챔피언이 있는지 확인
+    //이연주
+    @Test
+    public void 플레이위치가_중복되는챔피온이_있는지_확인테스트() {
+        Map<String, List<String>> ChampionByPosition = new HashMap<>();
+        for (Champion champion : championList) {
+            List<String> ChampList = new ArrayList<String>();
+            if(ChampionByPosition.containsKey(champion.getPosition())) {
+                ChampList = ChampionByPosition.get(champion.getPosition());
+            }
+            ChampList.add(champion.getName());
+            ChampionByPosition.put(champion.getPosition(), ChampList);
+        }
+        Assert.assertThat(ChampionByPosition.get("바텀"), IsCollectionContaining.hasItem("베인"));
+    }
+
+
+    //    List<String>을 생성하고 값이 비어 있는지를 테스트 empty()
     @Test //lww
     public void givenCollectionWhenEmptyCorrect() {
         List<String> emptyList = new ArrayList<>();
-        assertThat(emptyList.size(), is(0));
+//        assertThat(emptyList.size(), is(0));
 //        assertThat(emptyList, empty());
     }
 
@@ -69,8 +98,8 @@ public class ChampionTest {
         String startString = "Player";
         String endString = "point";
         String contain = "yer";
-        assertThat(sampleString1, is(startsWith(startString)));
-        assertThat(sampleString2, allOf(containsString(contain), endsWith(endString)));
+//        assertThat(sampleString1, is(startsWith(startString)));
+//        assertThat(sampleString2, allOf(containsString(contain), endsWith(endString)));
 //        assertThat(sampleString1, anyOf(startsWith(startString), containsString(endString)));
 //        assertThat(sampleString2, is(endsWith(endString)));
     }
@@ -87,8 +116,8 @@ public class ChampionTest {
     @Test
     public void shouldNotErrorGetReference() {
 //        assertThat(championList.get(2), anything());
-        assertThat(championList.get(0), anything());
-        assertThat(championList.get(1), any(Champion.class));
+//        assertThat(championList.get(0), anything());
+//        assertThat(championList.get(1), any(Champion.class));
     }
 
     //객체 크기 검증 테스트 hasSize
@@ -119,8 +148,8 @@ public class ChampionTest {
 //        assertThat(championList.get(0), hasProperty("position"));
 //        assertThat(championList.get(0), hasProperty("position", equalTo("탑")));
 
-        assertThat(championList.get(1), hasProperty("name", equalTo("리신")));
-        assertThat(championList.get(1), hasProperty("position", is("정글")));
+//        assertThat(championList.get(1), hasProperty("name", equalTo("리신")));
+//        assertThat(championList.get(1), hasProperty("position", is("정글")));
     }
 
     //hasToString 활용 테스트
@@ -129,7 +158,7 @@ public class ChampionTest {
         List<String> champListNames = Arrays.asList("루시안", "애쉬", "렉사이", "갈리오", "모르가느", "블라디미르");
 //        assertThat(champListNames.get(0), hasToString("루시안"));
 
-        assertThat(champListNames.get(1), hasToString(any(String.class)));
+//        assertThat(champListNames.get(1), hasToString(any(String.class)));
         assertThat(champListNames.get(1), hasToString("애쉬"));
     }
 
