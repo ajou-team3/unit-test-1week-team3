@@ -91,7 +91,7 @@ public class ChampionTest {
 
 
     //문자열 관련 테스트 anyOf, containsString, endWith
-    @Test //lww
+    @Test //이원우
     public void testForRelatedString() {
         String sampleString1 = "Player Focus";
         String sampleString2 = "Player point";
@@ -105,7 +105,7 @@ public class ChampionTest {
     }
 
     //부동소수점 범위 closeTo 테스트
-    @Test //lww
+    @Test //이원우
     public void testForFloatingPoint() {
 //        assertThat(3.14, closeTo(3, 0.2));
         assertThat(3.11, closeTo(3, 0.12));
