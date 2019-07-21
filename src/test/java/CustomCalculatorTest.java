@@ -20,6 +20,14 @@ public class CustomCalculatorTest {
         customCalculator.divide(anyInt(), 0);
     }
 
+    //이연주
+    //연산이10ms이내되는지_검증테스트
+    @Test(timeout = 1)
+    public void 곱하기연산이1ms이내되는지_검증테스트() throws InterruptedException {
+        customCalculator = new CustomCalculator();
+        int result = customCalculator.multiply(152,1215);
+        System.out.println("연산이 1ms 내에 성공되었습니다.");
+    }
 
     //더하기 테스트 작성
     //박수린
@@ -44,7 +52,7 @@ public class CustomCalculatorTest {
         assertTrue(result == 13);
         System.out.println("result :: " + result);
     }
-
+    
     //곱하기 테스트 작성
     @Test
     public void multiply() {
