@@ -66,7 +66,7 @@ public class ChampionTest {
 
 
     //    List<String>을 생성하고 값이 비어 있는지를 테스트 empty()
-    @Test //lww
+    @Test //이원우
     public void givenCollectionWhenEmptyCorrect() {
         List<String> emptyList = new ArrayList<>();
 //        assertThat(emptyList.size(), is(0));
@@ -74,7 +74,7 @@ public class ChampionTest {
     }
 
     //notNullValue 활용한 테스트
-    @Test  //lww
+    @Test  //이원우
     public void notNullCheck() {
         String lck = "LCK";
         assertNotNull(lck);
@@ -82,7 +82,7 @@ public class ChampionTest {
     }
 
     //nullValue 활용한 테스트
-    @Test //lww
+    @Test //이원우
     public void givenStringWhenNullIsCorrect() {
         String lck = null;
         assertEquals(lck, null);
