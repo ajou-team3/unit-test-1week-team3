@@ -2,12 +2,24 @@
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
+import static org.mockito.Matchers.anyInt;
 
 public class CustomCalculatorTest {
 
     private CustomCalculator customCalculator;
+
+
+
+    //이연주
+    //0으로 나눌 때 예외처리
+    @Test
+    public void 분자가_0일때_예외처리하는지_검증테스트() {
+        customCalculator = new CustomCalculator();
+        customCalculator.divide(anyInt(), 0);
+    }
+
 
     //더하기 테스트 작성
     //박수린
