@@ -54,7 +54,7 @@ public class ChampionTest {
     public void 플레이위치가_중복되는챔피온이_있는지_확인테스트() {
         Map<String, List<String>> ChampionByPosition = new HashMap<>();
         for (Champion champion : championList) {
-            List<String> ChampList = new ArrayList<String>();
+            List<String> ChampList = new ArrayList<>();
             if(ChampionByPosition.containsKey(champion.getPosition())) {
                 ChampList = ChampionByPosition.get(champion.getPosition());
             }

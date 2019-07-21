@@ -14,7 +14,7 @@ public class CustomCalculatorTest {
 
     //이연주
     //0으로 나눌 때 예외처리
-    @Test
+    @Test(expected = ArithmeticException.class)
     public void 분자가_0일때_예외처리하는지_검증테스트() {
         customCalculator = new CustomCalculator();
         customCalculator.divide(anyInt(), 0);
